@@ -1,13 +1,13 @@
 #include "segment_tree.h"
 
 SegmentTree::SegmentTree(vector<int> nums) {
-        size = nums.size();
-        if (size == 0) return;
-        tree.resize(size * 4);
-        buildTree(nums, 0, 0, size - 1);
+    size = nums.size();
+    if (size == 0) return;
+    tree.resize(size * 4);
+    buildTree(nums, 0, 0, size - 1);
 }
 
-SegmentTree::buildTree(vector<int>& nums, int treeIndex, int left, int right) {
+void SegmentTree::buildTree(vector<int>& nums, int treeIndex, int left, int right) {
 
     if (left == right) { tree[treeIndex] = nums[left]; return;}
     int mid = (right - left) / 2 + left;
@@ -19,11 +19,11 @@ SegmentTree::buildTree(vector<int>& nums, int treeIndex, int left, int right) {
     return;
 }
 
-SegmentTree::update(int i, int val) {
+void SegmentTree::update(int i, int val) {
     updateST(i, val, 0, size - 1, 0);
 }
 
-SegmentTree::updateST(int index, int val, int left, int right, int treeIndex) {
+void SegmentTree::updateST(int index, int val, int left, int right, int treeIndex) {
     if (left == right) {tree[treeIndex] = val; return;}
     
     int mid = left + (right - left) / 2;
@@ -40,14 +40,14 @@ SegmentTree::updateST(int index, int val, int left, int right, int treeIndex) {
     return;
 }
 
-SegmentTree::int sumRange(int i, int j) {
+int SegmentTree::sumRange(int i, int j) {
 
     int ret = sumRangeST(i, j, 0, 0, size - 1);
     return ret;
 
 }
 
-SegmentTree::int sumRangeST(int targetLeft, int targetRight, int treeIndex, int currentLeft, int currentRight) {
+int SegmentTree::sumRangeST(int targetLeft, int targetRight, int treeIndex, int currentLeft, int currentRight) {
 
     if (targetLeft == currentLeft 
             && targetRight == currentRight)

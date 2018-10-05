@@ -1,6 +1,9 @@
 #ifndef SEGMENT_TREE_H
 #define SEGMENT_TREE_H
 
+#include <vector>
+using namespace std;
+
 class SegmentTree {
 private:
     vector<int> tree;
